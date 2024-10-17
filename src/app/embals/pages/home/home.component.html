@@ -1,16 +1,104 @@
-<section class="flex items-center justify-center h-screen bg-gradient-to-r from-blue-400 to-blue-600 text-white">
-    <div class="container mx-auto px-6 md:flex md:justify-between md:items-center">
-        <div class="md:w-1/2">
-            <h2 class="text-4xl font-bold leading-tight mb-4">Ahorra Agua, Ahorra Vida</h2>
-            <p class="text-lg mb-6">Descubre cómo el uso eficiente del agua de embalses puede transformar nuestro
-                futuro.</p>
-            <a href="#learn-more"
-                class="bg-white text-blue-600 font-semibold py-2 px-4 rounded shadow hover:bg-gray-200 transition duration-300">Aprende
-                Más</a>
-        </div>
-        <div class="md:w-1/2 mt-6 md:mt-0">
-            <img src="https://images.unsplash.com/photo-1588702547903-d6f7e1c8c8e9" alt="Embalse"
-                class="w-full h-auto rounded-lg shadow-lg object-cover">
-        </div>
-    </div>
-</section>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODS 6 - Agua Limpia y Saneamiento</title>
+    <!-- Vinculación de Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-ods6">Sobre el ODS 6</a></li>
+                <li><a href="#universidad">Universidad de Málaga</a></li>
+                <li><a href="#embalses">Embalses en España</a></li> <!-- Nuevo menú -->
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio">
+            <h1>Bienvenidos al ODS 6</h1>
+            <p>Agua limpia y saneamiento para todos. Conoce más sobre la importancia del agua.</p>
+            <img src="assets/agualimpia.png" alt="Agua limpia" width="150" />
+        </section>
+
+        <section id="sobre-ods6">
+            <h2>Sobre el ODS 6</h2>
+            <p>El ODS 6 tiene como objetivo garantizar la disponibilidad y la gestión sostenible del agua y el
+                saneamiento para todos.</p>
+            <img src="assets/ods6.jpg" alt="ODS 6" width="150" />
+        </section>
+
+        <section id="universidad">
+            <h2>Universidad de Málaga</h2>
+            <p>La Universidad de Málaga se compromete a la sostenibilidad y a la educación sobre el uso responsable del
+                agua.</p>
+            <img src="Universidad_de_Málaga.jpg" alt="Universidad de Málaga" width="150" />
+        </section>
+
+        <section id="embalses">
+            <h2>Embalses en España</h2>
+            <p>Los embalses en España son esenciales para el suministro de agua potable, riego agrícola, generación
+                hidroeléctrica y control de inundaciones. Con más de 1,200 embalses, España tiene una de las mayores
+                capacidades de almacenamiento per cápita. Entre los más grandes destacan La Serena (el mayor, con 3,217
+                hm³) y Alcántara (3,162 hm³), ambos claves para el riego y la energía. También destacan infraestructuras
+                como el Trasvase Tajo-Segura, que transporta agua entre cuencas. Además de su función práctica, muchos
+                embalses ofrecen valor ecológico y recreativo, como el Embalse de Entrepeñas. Estos son algunos de los
+                embalses más importantes:</p><br>
+            <ul>
+                <li>Embalse de Buendía</li>
+                <li>Embalse de Alcántara</li>
+                <li>Embalse de Valdecañas</li>
+                <li>Embalse de La Serena</li>
+            </ul><br>
+            <div id="map" style="height: 400px;"></div> <!-- Mapa interactivo -->
+        </section>
+
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <p>Para más información, contacta con nosotros a través del siguiente correo: <a
+                    href="mailto:info@uma.es">infouma.es</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Universidad de Málaga - ODS 6</p>
+    </footer>
+
+    <!-- Vinculación de Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Inicializar el mapa
+        var map = L.map('map').setView([40.4168, -3.7038], 6); // Centrado en España
+
+        // Capa de mapa de OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Marcadores de embalses (Ejemplo, puedes añadir más)
+        var embalses = [
+            { nombre: 'Embalse de Buendía', coords: [40.8508, -2.0055] },
+            { nombre: 'Embalse de Alcántara', coords: [39.6662, -6.4976] },
+            { nombre: 'Embalse de Valdecañas', coords: [39.6967, -5.8144] },
+            { nombre: 'Embalse de La Serena', coords: [39.2176, -5.4739] }
+        ];
+
+        embalses.forEach(function (embalse) {
+            L.marker(embalse.coords)
+                .addTo(map)
+                .bindPopup(embalse.nombre)
+                .openPopup();
+        });
+    </script>
+</body>
+
+</html>
