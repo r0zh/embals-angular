@@ -4,3 +4,5 @@
 
 ## Github del backend con flask
 [Servidor flask](https://github.com/r0zh/embals-flask)
+
+## Despliegue (incompleto)
